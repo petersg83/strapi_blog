@@ -20,7 +20,9 @@ const Category = withRouter(({ router }) => {
                     <h1>{category}</h1>
                     <Query<QueryType> query={POSTS_QUERY} options={{ variables: { category }}}>
                         {({ data }) => {
-                            return data ? <Posts posts={data.posts} /> : null;
+                            return data && data.posts.length > 0
+                                ? <Posts posts={data.posts} />
+                                : <p>No posts found for "{category}"</p>;
                         }}
                     </Query>
                 </div>
