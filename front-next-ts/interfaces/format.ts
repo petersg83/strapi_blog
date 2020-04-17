@@ -8,4 +8,4 @@ export default interface Format {
     url: string;
 }
 
-export type FormatType = 'thumbnail' | 'medium' | 'small';
+export type FormatType = 'thumbnail' | 'medium' | 'small' | 'large';
