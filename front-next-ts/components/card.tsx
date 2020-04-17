@@ -13,8 +13,8 @@ const Card: FC<Props> = ({ post }) => {
                 <div className="uk-card uk-card-muted">
                     <div className="uk-card-media-top">
                         <img
-                            src={process.env.API_URL + post.cover.formats.thumbnail.url}
-                            alt={post.cover.formats.thumbnail.url}
+                            src={process.env.API_URL + post.cover.formats.small.url}
+                            alt={post.cover.formats.small.url}
                             height="120"
                         />
                     </div>
