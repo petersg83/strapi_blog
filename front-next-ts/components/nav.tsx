@@ -2,12 +2,20 @@ import React from 'react';
 import Link from 'next/link';
 import Query from '../components/query';
 import CATEGORIES_QUERY from '../apollo/queries/category/categories';
+import Category from "../interfaces/category";
+
+interface QueryType {
+    categories: Category[];
+}
 
 const Nav = () => {
     return (
         <div>
-            <Query query={CATEGORIES_QUERY} id={null}>
-                {({ data: { categories } }: any) => {
+            <Query<QueryType> query={CATEGORIES_QUERY} id={null}>
+                {({ data }) => {
+                    if (!data) return null;
+
+                    const { categories } = data;
                     return (
                         <div>
                             <nav className="uk-navbar-container" data-uk-navbar>
@@ -23,7 +31,7 @@ const Nav = () => {
 
                                 <div className="uk-navbar-right">
                                     <ul className="uk-navbar-nav">
-                                        {categories.map((category: any) => {
+                                        {categories.map((category) => {
                                             return (
                                                 <li key={category.id}>
                                                     <Link

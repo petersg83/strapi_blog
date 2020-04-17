@@ -20,7 +20,7 @@ const Card: FC<Props> = ({ post }) => {
                     </div>
                     <div className="uk-card-body">
                         <p id="category" className="uk-text-uppercase">
-                            Category
+                            {post.category.name}
                         </p>
                         <p id="title" className="uk-text-large">
                             {post.title}

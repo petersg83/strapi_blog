@@ -13,7 +13,7 @@ const Home = () => {
         <div>
             <div className="uk-section">
                 <div className="uk-container uk-container-large">
-                    <h1>Strapi blog</h1>
+                    <h1>Pierre blog</h1>
                     <Query<QueryType> query={POSTS_QUERY}>
                         {({ data }) => {
                             return data ? <Posts posts={data.posts} /> : null;

@@ -9,6 +9,9 @@ const POST_QUERY = gql`
             cover {
                 url
             }
+            category {
+                name
+            }
             created_at
         }
     }

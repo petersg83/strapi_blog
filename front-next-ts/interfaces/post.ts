@@ -1,4 +1,5 @@
 import Image from "./image";
+import Category from "./category";
 
 export default interface Post {
     id: number;
@@ -6,4 +7,5 @@ export default interface Post {
     content: string;
     created_at: Date;
     cover: Image;
+    category: Category;
 }

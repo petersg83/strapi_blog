@@ -5,6 +5,9 @@ const POSTS_QUERY = gql`
         posts {
             id
             title
+            category {
+                name
+            }
             cover {
                 url
             }
