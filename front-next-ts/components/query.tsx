@@ -1,15 +1,15 @@
 import React, {FC} from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import {QueryHookOptions, useQuery} from '@apollo/react-hooks';
 import {DocumentNode} from "graphql";
 
 interface Props<T> {
     children: FC<{ data?: T }>,
     query: DocumentNode,
-    id?: number | null | string | string[]
+    options?: QueryHookOptions
 }
 
-function Query<T>({ children, query, id }: Props<T>) {
-    const { data, loading, error } = useQuery<T>(query, { variables: { id }});
+function Query<T>({ children, query, options }: Props<T>) {
+    const { data, loading, error } = useQuery<T>(query, options);
 
     if (loading) {
         return <p>Loading</p>;

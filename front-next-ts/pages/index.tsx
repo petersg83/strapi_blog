@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Posts from '../components/posts';
 import Query from '../components/query';
 import POSTS_QUERY from "../apollo/queries/post/posts";
@@ -8,7 +8,7 @@ interface QueryType {
     posts: Post[];
 }
 
-const Home = () => {
+const Home: FC = () => {
     return (
         <div>
             <div className="uk-section">

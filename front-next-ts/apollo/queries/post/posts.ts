@@ -1,8 +1,14 @@
 import gql from "graphql-tag";
 
 const POSTS_QUERY = gql`
-    query Posts {
-        posts {
+    query Posts($category: String) {
+        posts(
+            where: {
+                category: {
+                    name: $category
+                }
+            }
+        ){
             id
             title
             category {
