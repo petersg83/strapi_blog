@@ -25,6 +25,13 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "category": {
+      "model": "category",
+      "via": "posts"
+    },
+    "published_at": {
+      "type": "date"
     }
   }
 }

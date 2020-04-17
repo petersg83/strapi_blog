@@ -1,112 +1,111 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
+/**
+ * SEO component that queries for data with
+ *  Gatsby's useStaticQuery React hook
+ *
+ * See: https://www.gatsbyjs.org/docs/use-static-query/
+ */
 
-const query = graphql`
-  query GetSiteMetadata {
-    site {
-      siteMetadata {
-        title
-        author
-        description
-        siteUrl
-        social {
-          twitter
-        }
-      }
-    }
-  }
-`;
+import React from "react"
+import PropTypes from "prop-types"
+import Helmet from "react-helmet"
+import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ meta, image, title, description, slug, lang = 'en' }) {
+function SEO({ description, lang, meta, title }) {
+  // const { site } = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       site {
+  //         siteMetadata {
+  //           title
+  //           description
+  //           author
+  //         }
+  //       }
+  //     }
+  //   `
+  // )
+  //
+  const metaDescription = "salut";
+
   return (
-    <StaticQuery
-      query={query}
-      render={data => {
-        const { siteMetadata } = data.site;
-        const metaDescription = description || siteMetadata.description;
-        const metaImage = image ? `${siteMetadata.siteUrl}/${image}` : null;
-        const url = `${siteMetadata.siteUrl}${slug}`;
-        return (
-          <Helmet
-            htmlAttributes={{ lang }}
-            {...(title
-              ? {
-                  titleTemplate: `%s — ${siteMetadata.title}`,
-                  title,
-                }
-              : {
-                  title: `${siteMetadata.title} — A blog by Dan Abramov`,
-                })}
-            meta={[
-              {
-                name: 'description',
-                content: metaDescription,
-              },
-              {
-                property: 'og:url',
-                content: url,
-              },
-              {
-                property: 'og:title',
-                content: title || siteMetadata.title,
-              },
-              {
-                property: 'og:description',
-                content: metaDescription,
-              },
-              {
-                name: 'twitter:card',
-                content: 'summary',
-              },
-              {
-                name: 'twitter:creator',
-                content: siteMetadata.social.twitter,
-              },
-              {
-                name: 'twitter:title',
-                content: title || siteMetadata.title,
-              },
-              {
-                name: 'twitter:description',
-                content: metaDescription,
-              },
-            ]
-              .concat(
-                metaImage
-                  ? [
-                      {
-                        property: 'og:image',
-                        content: metaImage,
-                      },
-                      {
-                        name: 'twitter:image',
-                        content: metaImage,
-                      },
-                    ]
-                  : []
-              )
-              .concat(meta)}
-          />
-        );
+    <Helmet
+      htmlAttributes={{
+        lang,
       }}
+      title="blog"
+      link={[
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Staatliches",
+        },
+        {
+          rel: "stylesheet",
+          href:
+            "https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css",
+        },
+      ]}
+      script={[
+        {
+          src:
+            "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js",
+        },
+        {
+          src:
+            "https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js",
+        },
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js",
+        },
+      ]}
+      meta={[
+        {
+          name: `description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: "me",
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription,
+        },
+      ].concat(meta)}
     />
-  );
+  )
 }
 
 SEO.defaultProps = {
+  lang: `en`,
   meta: [],
-  title: '',
-  slug: '',
-};
+  description: ``,
+}
 
 SEO.propTypes = {
   description: PropTypes.string,
-  image: PropTypes.string,
-  meta: PropTypes.array,
-  slug: PropTypes.string,
+  lang: PropTypes.string,
+  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-};
+}
 
-export default SEO;
+export default SEO
