@@ -1,18 +1,11 @@
-import Format from "./format";
+import Format, {FormatType} from "./format";
 
-export default interface Image {
+export default interface Image extends Format {
     id: string;
     name: string;
     alternativeText: string;
     caption: string;
-    width: number;
-    height: number;
-    formats: Map<string, Format>;
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
+    formats: { [name in FormatType]: Format };
     previewUrl: string | null;
     provider: string;
     provider_metadata: {} | null;

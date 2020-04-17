@@ -7,3 +7,5 @@ export default interface Format {
     size: number;
     url: string;
 }
+
+export type FormatType = 'thumbnail' | 'medium' | 'small';

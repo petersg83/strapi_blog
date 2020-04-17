@@ -14,7 +14,7 @@ const Card: FC<Props> = ({ post }) => {
                     <div className="uk-card-media-top">
                         <img
                             src={process.env.API_URL + post.cover.url}
-                            alt={post.cover.url}
+                            alt={post.cover.formats.thumbnail.url}
                             height="120"
                         />
                     </div>
