@@ -27,11 +27,15 @@
       "type": "richtext"
     },
     "category": {
-      "model": "category",
-      "via": "posts"
+      "via": "posts",
+      "model": "category"
     },
     "published_at": {
       "type": "date"
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
     }
   }
 }
