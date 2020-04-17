@@ -11,7 +11,7 @@ interface QueryType {
 const Nav = () => {
     return (
         <div>
-            <Query<QueryType> query={CATEGORIES_QUERY} id={null}>
+            <Query<QueryType> query={CATEGORIES_QUERY} options={{ variables: { id: null } }}>
                 {({ data }) => {
                     if (!data) return null;
 
@@ -37,7 +37,7 @@ const Nav = () => {
                                                     <Link
                                                         href={{
                                                             pathname: "category",
-                                                            query: { id: category.id }
+                                                            query: { name: category.name }
                                                         }}
                                                     >
                                                         <a className="uk-link-reset">{category.name}</a>

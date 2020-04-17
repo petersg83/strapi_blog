@@ -1,20 +1,24 @@
-import React, {FC} from 'react';
+import React from 'react';
+
 import Posts from '../components/posts';
 import Query from '../components/query';
 import POSTS_QUERY from "../apollo/queries/post/posts";
-import Post from "../interfaces/post";
+import Post from "../interfaces/post"
+import {withRouter} from "next/router";
 
 interface QueryType {
     posts: Post[];
 }
 
-const Home: FC = () => {
+const Category = withRouter(({ router }) => {
+    const category = router.query.name;
+
     return (
         <div>
             <div className="uk-section">
                 <div className="uk-container uk-container-large">
-                    <h1>Pierre blog</h1>
-                    <Query<QueryType> query={POSTS_QUERY}>
+                    <h1>{category}</h1>
+                    <Query<QueryType> query={POSTS_QUERY} options={{ variables: { category }}}>
                         {({ data }) => {
                             return data ? <Posts posts={data.posts} /> : null;
                         }}
@@ -23,6 +27,6 @@ const Home: FC = () => {
             </div>
         </div>
     );
-};
+});
 
-export default Home;
+export default Category;

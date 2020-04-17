@@ -13,7 +13,7 @@ interface QueryType {
 const Article = () => {
     const router = useRouter();
     return (
-        <Query<QueryType> query={POST_QUERY} id={router.query.id}>
+        <Query<QueryType> query={POST_QUERY} options={{ variables: { id: router.query.id } }}>
             {({ data }) => {
                 if (!data) return null;
 
